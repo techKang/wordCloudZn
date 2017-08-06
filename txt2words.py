@@ -12,10 +12,11 @@ class Txt2words():
     def entxt(self):
         srcname = self.srcfile
         desname = self.desfile
-        with open(srcname, 'r') as src:
+        with open(srcname, 'r',encoding='utf-8') as src:
             srctext = src.read()
             with open(desname, 'w') as des:
-                destext = re.sub('\W\D',' ',srctext)
+                destext = re.sub('\W',' ',srctext)
+                destext=' '.join(destext.split())
                 des.write(destext)
                 pass
             pass
@@ -25,13 +26,13 @@ class Txt2words():
 if __name__=='__main__':
     testClass=Txt2words()
     testClass.entxt()
-    with open(testClass.srcfile,'r') as src:
+    with open(testClass.srcfile,'r',encoding='utf-8') as src:
         print('source file:')
         srctext=src.read(100)
         print(srctext)
         pass
     with open(testClass.desfile,'r') as des:
-        print('destination file:')
+        print('\ndestination file:')
         destext=des.read(100)
         print(destext)
         pass

@@ -9,3 +9,4 @@ src/ec2
 src.txt
 des.txt
 .idea/*
+.idea/workspace.xml
