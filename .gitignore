@@ -8,4 +8,4 @@ loc.py
 src/ec2
 src.txt
 des.txt
-.idea
+.idea/*
