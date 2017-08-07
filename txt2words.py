@@ -11,14 +11,15 @@ this python file is used to remove all punctuations in source txt files.
 
 
 class Txt2words():
-    def __init__(self, srcfile='src.txt', desfile='des.txt'):
+    def __init__(self, srcfile='src.txt', desfile='des.txt',encoding='utf-8'):
         self.srcfile = srcfile
         self.desfile = desfile
+        self.encoding='utf-8'
 
     def entxt(self):
         srcname = self.srcfile
         desname = self.desfile
-        with open(srcname, 'r', encoding='utf-8') as src:
+        with open(srcname, 'r', encoding=self.encoding) as src:
             srctext = src.read()
         with open(desname, 'w') as des:
             destext = re.sub('\W', ' ', srctext)
@@ -43,7 +44,7 @@ class Txt2words():
 if __name__ == '__main__':
     testClass = Txt2words(srcfile='splited.txt', desfile='des.txt')
     testClass.cntxt()
-    with open(testClass.srcfile, 'r', encoding='utf-8') as src:
+    with open(testClass.srcfile, 'r', encoding=testClass.encoding) as src:
         print('source file:')
         srctext = src.read(300)
         print(srctext)
