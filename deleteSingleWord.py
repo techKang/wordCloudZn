@@ -18,7 +18,7 @@ class DeleteSingleWord():
             output = ''
             while line != []:
                 i += 1
-                print(line)
+                # print(line)
                 if len(line[0]) == 1 and i < self.cutlen:
                     line = src.readline().split()
                     continue

@@ -6,11 +6,12 @@ from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 
 
 class WorldCloudGene():
-    def __init__(self, picture='testim.png', srcfile='notionFreq.txt', encoding='utf-8', maxword=2000):
+    def __init__(self, picture='testim.png', srcfile='notionFreq.txt', encoding='utf-8', maxword=2000,fontsize=100):
         self.picture = picture
         self.srcfile = srcfile
         self.encoding = encoding
         self.maxword = maxword
+        self.fontsize=fontsize
 
     def worldCloudGene(self):
         # 获取当前文件路径
@@ -49,7 +50,7 @@ class WorldCloudGene():
                        mask=alice_coloring,  # 设置背景图片
                        stopwords=STOPWORDS.add("said"),
                        max_words=self.maxword,
-                       max_font_size=80,  # 字体最大值
+                       max_font_size=300,  # 字体最大值
                        font_path=path.join(d, 'msyh.ttf'),
                        random_state=42)
         # 生成词云, 可以用generate输入全部文本(中文不好分词),也可以我们计算好词频后使用generate_from_frequencies函数
