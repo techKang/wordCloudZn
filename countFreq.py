@@ -1,16 +1,17 @@
 # -*- coding:utf-8 -*-
-'''
-this python file is used to count word frequency in source text and print it to freq.txt
-'''
 
+"""
+this python file is used to count word frequency in source text and print it to freq.txt
+"""
 
 class CountFreq():
-    def __init__(self, srcfile='src.txt', desfile='freq.txt'):
+    def __init__(self, srcfile='src.txt', desfile='freq.txt',encoding='utf-8'):
         self.srcfile = srcfile
         self.desfile = desfile
+        self.encoding=encoding
 
     def countFreq(self):
-        with open(self.srcfile, 'r', encoding='utf-8') as src:
+        with open(self.srcfile, 'r', encoding=self.encoding) as src:
             words = src.read().split()
             pass
         words_index = set(words)
@@ -26,9 +27,9 @@ class CountFreq():
 
 
 if __name__ == "__main__":
-    testClass = CountFreq(srcfile='des.txt')
+    testClass = CountFreq(srcfile='des.txt',encoding='GB18030')
     testClass.countFreq()
-    with open(testClass.srcfile, 'r', encoding='utf-8') as src:
+    with open(testClass.srcfile, 'r', encoding=testClass.encoding) as src:
         print('source file:')
         srctext = src.read(300)
         print(srctext)

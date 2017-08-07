@@ -1,59 +1,29 @@
 # -*- coding:utf-8 -*-
 
-from os import path
-from scipy.misc import imread
-import matplotlib.pyplot as plt
+'''
+This is main python file. Just run it!
+'''
+__author__ = 'Kangsir'
 
-from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
+import splitChinese
+import txt2words
+import countFreq
+import deleteSingleWord
+import wordCloudGene
 
-# 获取当前文件路径
-# __file__ 为当前文件, 在ide中运行此行会报错,可改为
-# d = path.dirname('.')
-d = path.dirname(__file__)
 
-# 读取文本 alice.txt 在包文件的example目录下
-#内容为
-"""
-Project Gutenberg's Alice's Adventures in Wonderland, by Lewis Carroll
+def run():
+    runClass1 = splitChinese.SplitChinese()
+    runClass1.splitChinese()
+    runClass2 = txt2words.Txt2words(srcfile='splited.txt', desfile='des.txt', encoding='GB18030')
+    runClass2.cntxt()
+    runClass3 = countFreq.CountFreq(srcfile='des.txt', encoding='GB18030')
+    runClass3.countFreq()
+    runClass4 = deleteSingleWord.DeleteSingleWord(srcfile='freq.txt')
+    runClass4.deleteSingleWord()
+    runClass5 = wordCloudGene.WorldCloudGene(encoding='utf-8', maxword=1000)
+    runClass5.worldCloudGene()
 
-This eBook is for the use of anyone anywhere at no cost and with
-almost no restrictions whatsoever.  You may copy it, give it away or
-re-use it under the terms of the Project Gutenberg License included
-with this eBook or online at www.gutenberg.org
-"""
-text = open(path.join(d, 'alice.txt'),encoding= 'utf-8').read()
 
-# read the mask / color image
-# taken from http://jirkavinse.deviantart.com/art/quot-Real-Life-quot-Alice-282261010
-# 设置背景图片
-alice_coloring = imread(path.join(d, "caolin4.png"))
-
-wc = WordCloud(background_color="white", #背景颜色max_words=2000,# 词云显示的最大词数
-mask=alice_coloring,#设置背景图片
-stopwords=STOPWORDS.add("said"),
-max_words=4000,
-max_font_size=80, #字体最大值
-random_state=42)
-# 生成词云, 可以用generate输入全部文本(中文不好分词),也可以我们计算好词频后使用generate_from_frequencies函数
-wc.generate(text)
-# wc.generate_from_frequencies(txt_freq)
-# txt_freq例子为[('词a', 100),('词b', 90),('词c', 80)]
-# 从背景图片生成颜色值
-image_colors = ImageColorGenerator(alice_coloring)
-
-# 以下代码显示图片
-plt.imshow(wc)
-plt.axis("off")
-# 绘制词云
-plt.figure()
-# recolor wordcloud and show
-# we could also give color_func=image_colors directly in the constructor
-plt.imshow(wc.recolor(color_func=image_colors))
-plt.axis("off")
-# 绘制背景图片为颜色的图片
-plt.figure()
-plt.imshow(alice_coloring, cmap=plt.cm.gray)
-plt.axis("off")
-plt.show()
-# 保存图片
-wc.to_file(path.join(d, "名称.png"))
+if __name__ == '__main__':
+    run()

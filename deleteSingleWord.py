@@ -24,7 +24,7 @@ class DeleteSingleWord():
                     continue
                 output += str(line[0]) + '  ' + str(line[1]) + '\n'
                 line = src.readline().split()
-        with open(self.desfile, 'w') as des:
+        with open(self.desfile, 'w',encoding='utf-8') as des:
             des.write(output)
 
 
@@ -36,7 +36,7 @@ if __name__ == "__main__":
         srctext = src.read(300)
         print(srctext)
         pass
-    with open(testClass.desfile, 'r', encoding='GB2312') as des:
+    with open(testClass.desfile, 'r') as des:
         print('\ndestination file:')
         destext = des.read(300)
         print(destext)
