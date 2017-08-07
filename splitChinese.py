@@ -21,13 +21,14 @@ class SplitChinese():
             geneStr = jieba.cut(src.read())
             destext = " ".join(geneStr)
             pass
-        with open(self.desfile, 'w') as des:
-            des.write(destext.encode('utf-8').decode('utf-8'))
+        with open(self.desfile, 'w',encoding='GB18030') as des:
+            des.write(destext)
             pass
 
 
 if __name__ == '__main__':
     testClass = SplitChinese()
+    #srcfile:src desfile:splicted(GB2312)
     testClass.splitChinese()
     with open(testClass.srcfile, 'r', encoding=testClass.encoding) as src:
         print('source file:')
