@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 import re
 
+
 class QqHistory():
     def __init__(self, srcfile='src.txt', desfile='des.txt', enconding='utf-8'):
         self.srcfile = srcfile
@@ -8,16 +9,17 @@ class QqHistory():
         self.encoding = enconding
 
     def qqHistroy(self):
-        with open(self.srcfile,'r',encoding=self.encoding) as src:
-            line=src.readline()
-            output=''
-            while line!='':
+        with open(self.srcfile, 'r', encoding=self.encoding) as src:
+            line = src.readline()
+            output = ''
+            while line != '':
                 if not re.match('201[67]\-\d{2}\-\d{2}', line):
-                    output+=line
-                line=src.readline()
-                output=output.replace('[图片]','')
+                    output += line
+                line = src.readline()
+                output = output.replace('[图片]', '')
                 output = output.replace('[表情]', '')
-        with open(self.desfile,'w',encoding='utf-8') as des:
+                output = output.replace('您好，我现在有事不在，一会再和您联系。', '')
+        with open(self.desfile, 'w', encoding='utf-8') as des:
             des.write(output)
 
 
